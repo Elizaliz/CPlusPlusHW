@@ -6,7 +6,6 @@ Elevator::Elevator()
 {
 }
 
-
 Elevator::~Elevator()
 {
 }
@@ -18,5 +17,10 @@ void Elevator::setState(State state)
 
 Elevator::State Elevator::getState()
 {
-   return state;
+   return this->state;
+}
+
+int Elevator::getNumPassengers()
+{
+   return this->numPassengers;
 }

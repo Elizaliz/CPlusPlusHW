@@ -16,13 +16,18 @@ public:
    struct customSort {
       bool operator()(Passenger* a, Passenger* b)
       {
-         return a->getStartFloor() < b->getStartFloor();
+         return a->getStartTime() < b->getStartTime();
       }
    };
 
    //std::sort(std::begin(myPassengers), std::end(myPassengers), customSort);
-   std::priority_queue<Passenger, std::vector< Passenger* >, customSort> passengerQueue;
+   std::priority_queue<Passenger, std::vector< Passenger* >, customSort> allPassengers;
+   std::priority_queue<Passenger, std::vector< Passenger* >, customSort> downPassengerQueue;
+   std::priority_queue<Passenger, std::vector< Passenger* >, customSort> upPassengerQueue;
+   std::vector<Elevator> elevators;
 
+   //checks to see if any passengers on the top of 
+   void updatePassengerQueue(int timer);
 private:
    int floors;
    int elevators;

@@ -23,6 +23,11 @@ Passenger::State Passenger::getState()
    return state;
 }
 
+int Passenger::getStartTime()
+{
+   return this->startTime;
+}
+
 int Passenger::getStartFloor()
 {
    return this->startFloor;

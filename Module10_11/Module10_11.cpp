@@ -4,6 +4,7 @@
 
 #include "Building.h"
 #include "Passenger.h"
+#include "Elevator.h"
 #include "Floor.h"
 #include <iostream> // input output stream
 #include <fstream> // file stream
@@ -38,27 +39,71 @@ int main()
          mainBuilding->passengerQueue.emplace(newPassenger);
       }
 
-      int timer = 0;
-      
-      while (!mainBuilding->passengerQueue.empty())//go until people are all satisfied
+   }
+
+
+   int timer = 0;
+
+   while (!mainBuilding->passengerQueue.empty())//go until people are all satisfied
+   {
+      building->updatePassengerQueue(timer); //this will check starttime of passenger and add to priority queue (which organizes by startTime
+      //I've got my priority queue
+      //if person at front of queue startTime has been reached, get on elevator
+      //else continue until next tick
+
+      //each elevator has a priority queue that has up to 8 people
+      //if empty, move to next floor up(?)
+
+      //each floor has a priority queue
+
+      //go through elevators and make decisions
+      for (Elevator elevator : elevatorList) //elevatorList is a vector
       {
-         //I've got my priority queue
-         //if person at front of queue startTime has been reached, get on elevator
-         //else continue until next tick
+         switch (elevator.getState())
+         {
+         case (Elevator::State::MOVING_UP) :
+            //check the floor and see if anyone on the elevator wants to get off at the next floor
+            //check only in the beginning or at the very end of the MOVINGUP
+            checkIfPassengerOnElevatorWantToGetOff(); //needs floor, passengers on elevator
+            if (elevator.getNumPassengers() < MAX_CAPACITY)
+            {
+               //check the floor and see if anyone on the floor is waiting
+               checkIfPassengerOnNextFloorWantsToGetOn();
+               //count to length of time it takes to get to the floor
+            }
+            break;
 
-         //each elevator has a priority queue that has up to 8 people
-         //if empty, move to next floor up(?)
+         case (Elevator::State::MOVING_DOWN) :
+            //check the floor and see if anyone on the floor is waiting
+            //check the floor and see if anyone on the elevator wants to get off at the next floor
+            //count to length of time it takes to get to the floor
+            break;
 
-         //each floor has a priority queue
+         case (Elevator::State::STOPPING) :
+            // count to length of time it takes to stop
+            break;
 
+         case (Elevator::State::STOPPED) :
+            //if people want to get off, let them get off
+            //if people want to get on, let them get on (as long as <=8)
+            //figure out which floor to go to as the end goal
+            break;
 
+         default:
+         }
 
-
-
-         timer++;
       }
 
+
+
+
+      timer++;
    }
+
+   //add up and take the average of the total wait time
+   //add up and take the average of the total travel time
+
+
 
    return 0;
 }
