@@ -22,8 +22,13 @@ public:
 
    //std::sort(std::begin(myPassengers), std::end(myPassengers), customSort);
    std::priority_queue<Passenger, std::vector< Passenger* >, customSort> allPassengers;
-   std::priority_queue<Passenger, std::vector< Passenger* >, customSort> downPassengerQueue;
-   std::priority_queue<Passenger, std::vector< Passenger* >, customSort> upPassengerQueue;
+   //std::priority_queue<Passenger, std::vector< Passenger* >, customSort> downPassengerQueue;
+   //std::priority_queue<Passenger, std::vector< Passenger* >, customSort> upPassengerQueue;
+
+   std::vector< std::priority_queue<Passenger, std::vector< Passenger* >, customSort> > downPassengerByFloorQueue;
+   std::vector< std::priority_queue<Passenger, std::vector< Passenger* >, customSort> > upPassengerByFloorQueue;
+
+
    std::vector<Elevator> elevators;
 
    //checks to see if any passengers on the top of 

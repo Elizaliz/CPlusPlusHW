@@ -54,17 +54,17 @@ int main()
       //each elevator has a priority queue that has up to 8 people
       //if empty, move to next floor up(?)
 
-      //each floor has a priority queue
+      //each floor has a priority queueS
 
       //go through elevators and make decisions
-      for (Elevator elevator : elevatorList) //elevatorList is a vector
+      for (Elevator elevator : building->elevators) //elevatorList is a vector
       {
          switch (elevator.getState())
          {
          case (Elevator::State::MOVING_UP) :
             //check the floor and see if anyone on the elevator wants to get off at the next floor
             //check only in the beginning or at the very end of the MOVINGUP
-            checkIfPassengerOnElevatorWantToGetOff(); //needs floor, passengers on elevator
+            elevator->checkIfPassengerOnElevatorWantToGetOff(); //needs floor, passengers on elevator
             if (elevator.getNumPassengers() < MAX_CAPACITY)
             {
                //check the floor and see if anyone on the floor is waiting

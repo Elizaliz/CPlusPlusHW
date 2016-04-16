@@ -19,14 +19,15 @@ void Building::updatePassengerQueue(int timer)
    {
       if (allPassengers.top()->getStartFloor() - allPassengers.top()->getEndFloor() > 0)
       {
-         downPassengerQueue.push(allPassengers.top());
+         //adding the passenger from the queue into the corresponding floor's priority queue
+         downPassengerByFloorQueue[allPassengers.top()->getStartFloor()].push(allPassengers.top());
          allPassengers.pop();
          std::cout << "passenger added to down queue" << std::endl;
       }
 
       else
       {
-         upPassengerQueue.push(allPassengers.top());
+         upPassengerByFloorQueue[allPassengers.top()->getStartFloor()].push(allPassengers.top());
          allPassengers.pop();
          std::cout << "passenger added to up queue" << std::endl;
       }
