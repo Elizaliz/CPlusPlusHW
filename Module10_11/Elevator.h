@@ -26,6 +26,8 @@ public:
 
    std::priority_queue<Passenger, std::vector< Passenger* >, customSort> elevatorPassengerQueue;
 
+   void checkIfPassengerOnElevatorWantToGetOff();
+   void checkIfPassengerOnNextFloorWantsToGetOn();
 
 private:
    //int beginningFloor;
@@ -36,6 +38,9 @@ private:
    //std::unique_ptr<Floor> secondFloor;
    //int currentTimeDuration;
    //int current allotedTime
+
+   int timeMovingToNextFloor; // up until 10 or 5
+   int timeStopping; // up until 2
 
    int numPassengers;
    State state;

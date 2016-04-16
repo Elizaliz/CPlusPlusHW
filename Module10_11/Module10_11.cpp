@@ -36,7 +36,7 @@ int main()
       {
          Passenger* newPassenger = new Passenger(StartTime, StartFloor, EndFloor);
          newPassenger->setState(Passenger::WAITING);
-         mainBuilding->passengerQueue.emplace(newPassenger);
+         mainBuilding->allPassengers.push(newPassenger);
       }
 
    }
@@ -44,31 +44,24 @@ int main()
 
    int timer = 0;
 
-   while (!mainBuilding->passengerQueue.empty())//go until people are all satisfied
+   while (!mainBuilding->allPassengers.empty() && !mainBuilding->downPassengerByFloorQueue.empty()
+      && !mainBuilding->upPassengerByFloorQueue.empty()) //go until people are all satisfied
    {
-      building->updatePassengerQueue(timer); //this will check starttime of passenger and add to priority queue (which organizes by startTime
-      //I've got my priority queue
-      //if person at front of queue startTime has been reached, get on elevator
-      //else continue until next tick
-
-      //each elevator has a priority queue that has up to 8 people
-      //if empty, move to next floor up(?)
-
-      //each floor has a priority queueS
+      mainBuilding->updatePassengerQueue(timer); //this will check starttime of passenger and add to priority queue (which organizes by startTime
 
       //go through elevators and make decisions
-      for (Elevator elevator : building->elevators) //elevatorList is a vector
+      for (Elevator elevator : mainBuilding->elevators) //elevatorList is a vector
       {
          switch (elevator.getState())
          {
          case (Elevator::State::MOVING_UP) :
             //check the floor and see if anyone on the elevator wants to get off at the next floor
             //check only in the beginning or at the very end of the MOVINGUP
-            elevator->checkIfPassengerOnElevatorWantToGetOff(); //needs floor, passengers on elevator
+            elevator.checkIfPassengerOnElevatorWantToGetOff(); //needs floor, passengers on elevator
             if (elevator.getNumPassengers() < MAX_CAPACITY)
             {
                //check the floor and see if anyone on the floor is waiting
-               checkIfPassengerOnNextFloorWantsToGetOn();
+               elevator.checkIfPassengerOnNextFloorWantsToGetOn();
                //count to length of time it takes to get to the floor
             }
             break;
