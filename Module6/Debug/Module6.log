@@ -1,0 +1,8 @@
+﻿  Probability.cpp
+  Module6.cpp
+  Generating Code...
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module6\probability.cpp(14): warning C4172: returning address of local variable or temporary: probability
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module6\probability.cpp(21): warning C4172: returning address of local variable or temporary: probability
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module6\probability.cpp(36): warning C4172: returning address of local variable or temporary: probability
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module6\probability.cpp(45): warning C4172: returning address of local variable or temporary: probability
+  Module6.vcxproj -> C:\Users\lizsk\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\Module6.exe

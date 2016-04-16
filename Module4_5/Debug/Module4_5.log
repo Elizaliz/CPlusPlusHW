@@ -1,0 +1,11 @@
+﻿  Hand.cpp
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module4_5\hand.h(36): warning C4091: 'static ': ignored on left of 'HANDTYPE' when no variable is declared
+  Generating Code...
+  Compiling...
+  PokerGame.cpp
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module4_5\hand.h(36): warning C4091: 'static ': ignored on left of 'HANDTYPE' when no variable is declared
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module4_5\pokergame.cpp(150): warning C4018: '<': signed/unsigned mismatch
+  Module4_5.cpp
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module4_5\hand.h(36): warning C4091: 'static ': ignored on left of 'HANDTYPE' when no variable is declared
+  Generating Code...
+  Module4_5.vcxproj -> C:\Users\lizsk\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\Module4_5.exe

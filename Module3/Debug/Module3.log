@@ -1,0 +1,7 @@
+﻿  stdafx.cpp
+  TicTacToe.cpp
+  Module3.cpp
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module3\module3.cpp(11): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module3\tictactoe.cpp(93): warning C4715: 'TicTacToe::PlayerTurn': not all control paths return a value
+  Module3.vcxproj -> C:\Users\lizsk\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\Module3.exe

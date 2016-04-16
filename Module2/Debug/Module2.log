@@ -1,0 +1,7 @@
+﻿  stdafx.cpp
+  Module2.cpp
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module2\module2.cpp(116): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module2\module2.cpp(118): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module2\module2.cpp(119): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\lizsk\documents\visual studio 2015\projects\consoleapplication1\module2\module2.cpp(121): warning C4305: 'argument': truncation from 'double' to 'float'
+  Module2.vcxproj -> C:\Users\lizsk\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\Module2.exe

@@ -1,0 +1,69 @@
+\hypertarget{class_tic_tac_toe}{}\section{Tic\+Tac\+Toe Class Reference}
+\label{class_tic_tac_toe}\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tic_tac_toe_a103fe9a5ae41b5ef756e20594a70cb7a}{Tic\+Tac\+Toe} ()\hypertarget{class_tic_tac_toe_a103fe9a5ae41b5ef756e20594a70cb7a}{}\label{class_tic_tac_toe_a103fe9a5ae41b5ef756e20594a70cb7a}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_tic_tac_toe_ac8d078fce31c624fe5abc82fd79761f1}{Check\+State} (int player, int row\+Col)
+\item 
+int \hyperlink{class_tic_tac_toe_ab0c711b7b28c84f9d8ffe1257d55e4dc}{Player\+Turn} ()
+\begin{DoxyCompactList}\small\item\em returns 1$\sim$9 depending on player input \end{DoxyCompactList}\item 
+int \hyperlink{class_tic_tac_toe_a5913a7ae814f50fd8b5547513c8fa7c2}{Computer\+Turn} ()
+\begin{DoxyCompactList}\small\item\em returns 1$\sim$9 depending on next free space \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_tic_tac_toe_a214158d44975ddd120192d6909332daa}{m\+\_\+game\+In\+Play}\hypertarget{class_tic_tac_toe_a214158d44975ddd120192d6909332daa}{}\label{class_tic_tac_toe_a214158d44975ddd120192d6909332daa}
+
+\begin{DoxyCompactList}\small\item\em whether or not to keep the game in play. False if game has been won or ended in a tie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Game of Tic Tac Toe-- player against the computer. 
+
+\subsection{Member Function Documentation}
+\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!Check\+State@{Check\+State}}
+\index{Check\+State@{Check\+State}!Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
+\subsubsection[{\texorpdfstring{Check\+State(int player, int row\+Col)}{CheckState(int player, int rowCol)}}]{\setlength{\rightskip}{0pt plus 5cm}void Tic\+Tac\+Toe\+::\+Check\+State (
+\begin{DoxyParamCaption}
+\item[{int}]{player, }
+\item[{int}]{row\+Col}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_tic_tac_toe_ac8d078fce31c624fe5abc82fd79761f1}{}\label{class_tic_tac_toe_ac8d078fce31c624fe5abc82fd79761f1}
+check if Player won, Computer Won, or Tie, set the m\+\_\+game in Play boolean if three in the last played row, column, or diagonals
+
+tie if none of the others are true and all positions filled
+
+checking row
+
+checking column
+
+checking diagonals \index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!Computer\+Turn@{Computer\+Turn}}
+\index{Computer\+Turn@{Computer\+Turn}!Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
+\subsubsection[{\texorpdfstring{Computer\+Turn()}{ComputerTurn()}}]{\setlength{\rightskip}{0pt plus 5cm}int Tic\+Tac\+Toe\+::\+Computer\+Turn (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_tic_tac_toe_a5913a7ae814f50fd8b5547513c8fa7c2}{}\label{class_tic_tac_toe_a5913a7ae814f50fd8b5547513c8fa7c2}
+
+
+returns 1$\sim$9 depending on next free space 
+
+$<$randomly chooses number between 0 $\sim$ 8 \index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!Player\+Turn@{Player\+Turn}}
+\index{Player\+Turn@{Player\+Turn}!Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
+\subsubsection[{\texorpdfstring{Player\+Turn()}{PlayerTurn()}}]{\setlength{\rightskip}{0pt plus 5cm}int Tic\+Tac\+Toe\+::\+Player\+Turn (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_tic_tac_toe_ab0c711b7b28c84f9d8ffe1257d55e4dc}{}\label{class_tic_tac_toe_ab0c711b7b28c84f9d8ffe1257d55e4dc}
+
+
+returns 1$\sim$9 depending on player input 
+
+$<$ checks that input for row and column is valid 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Tic\+Tac\+Toe.\+cpp\end{DoxyCompactItemize}
