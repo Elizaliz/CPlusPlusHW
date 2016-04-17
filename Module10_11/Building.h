@@ -3,6 +3,7 @@
 #include <vector>
 #include <queue>
 #include "Passenger.h"
+#include "Elevator.h"
 
 class Building
 {
@@ -32,11 +33,8 @@ public:
    std::vector<Elevator> elevators;
 
    //checks to see if any passengers on the top of 
-   void updatePassengerQueue(int timer);
+   void updatePassengerQueue();
 private:
-   int floors;
-   int elevators;
-
    int avgWaitTime;
    int avgTravelTime;
 

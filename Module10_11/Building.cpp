@@ -1,10 +1,11 @@
 #include "stdafx.h"
 #include "Building.h"
 #include "Elevator.h"
+#include "Timer.h"
 #include <iostream>
 
 Building::Building(int floors, int elevators) 
-   : floors(floors), elevators(elevators)
+   //: floors(floors), elevators(elevators)
 {
 }
 
@@ -13,9 +14,9 @@ Building::~Building()
 {
 }
 
-void Building::updatePassengerQueue(int timer)
+void Building::updatePassengerQueue()
 {
-   while (timer >= allPassengers.top()->getStartTime())
+   while (true)//timer->getTime() >= allPassengers.top()->getStartTime())
    {
       if (allPassengers.top()->getStartFloor() - allPassengers.top()->getEndFloor() > 0)
       {

@@ -1,4 +1,7 @@
 #pragma once
+#include "Passenger.h"
+#include <queue>
+
 class Floor
 {
 public:

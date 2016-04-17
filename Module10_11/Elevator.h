@@ -3,6 +3,8 @@
 #include "Floor.h"
 //#include <iostream>
 #include <memory>
+#include "Passenger.h"
+#include <queue>
 
 class Elevator
 {
@@ -24,10 +26,11 @@ public:
       }
    };
 
-   std::priority_queue<Passenger, std::vector< Passenger* >, customSort> elevatorPassengerQueue;
+   //std::priority_queue<Passenger, std::vector< Passenger* >, customSort> elevatorPassengerQueue;
+   std::vector< Passenger*> elevatorPassengerQueue;
 
    void checkIfPassengerOnElevatorWantToGetOff();
-   void checkIfPassengerOnNextFloorWantsToGetOn();
+   void checkIfPassengerOnNextFloorWantToGetOn();
 
 private:
    //int beginningFloor;
