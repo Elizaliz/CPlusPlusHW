@@ -8,7 +8,7 @@
 class Building
 {
 public:
-   Building(int floors, int elevators);
+   Building(int floors, int elevators, int totalTimeToMoveFloor, int totalTimeToStop);
    ~Building();
 
    //auto sortPassengersByDelta(std::vector< Passenger* >);
@@ -26,17 +26,24 @@ public:
    //std::priority_queue<Passenger, std::vector< Passenger* >, customSort> downPassengerQueue;
    //std::priority_queue<Passenger, std::vector< Passenger* >, customSort> upPassengerQueue;
 
-   std::vector< std::priority_queue<Passenger, std::vector< Passenger* >, customSort> > downPassengerByFloorQueue;
-   std::vector< std::priority_queue<Passenger, std::vector< Passenger* >, customSort> > upPassengerByFloorQueue;
+   //std::vector< std::priority_queue<Passenger, std::vector< Passenger* >, customSort> > downPassengerByFloorQueue;
+   //std::vector< std::priority_queue<Passenger, std::vector< Passenger* >, customSort> > upPassengerByFloorQueue;
 
-
-   std::vector<Elevator> elevators;
+   std::vector<Elevator*> elevators;
+   std::vector<Floor*> floors;
 
    //checks to see if any passengers on the top of 
    void updatePassengerQueue();
+   Passenger* getNextPassenger();
+
 private:
    int avgWaitTime;
    int avgTravelTime;
+   Timer *timer;
+   int numFloors;
+
+   void initiateElevators(int elevators, int totalTimeToMoveFloor, int totalTimeToStop);
+   void initiateFloors(int numFloors);
 
    //compare method-- is it the same for all elevators?
    //close up, close down, far up, far down

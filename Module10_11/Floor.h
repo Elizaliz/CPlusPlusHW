@@ -16,7 +16,8 @@ public:
       }
    };
    //should have its own queue of folks waiting
-   std::priority_queue<Passenger, std::vector< Passenger* >, customSort> floorPassengerQueue;
+   std::priority_queue<Passenger, std::vector< Passenger* >, customSort> upPassengerFloorQueue;
+   std::priority_queue<Passenger, std::vector< Passenger* >, customSort> downPassengerFloorQueue;
 
 private:
 

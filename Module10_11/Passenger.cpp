@@ -37,3 +37,13 @@ int Passenger::getEndFloor()
 {
    return this->endFloor;
 }
+
+void Passenger::setGotOnElevatorTime(int time)
+{
+   this->gotOnElevatorTime = time;
+}
+
+void Passenger::setGotOffElevatorTime(int time)
+{
+   this->gotOffElevatorTime = time;
+}

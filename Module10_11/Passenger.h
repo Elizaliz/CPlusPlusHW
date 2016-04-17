@@ -13,10 +13,16 @@ public:
    int getStartFloor();
    int getEndFloor();
 
+   void setGotOnElevatorTime(int time);
+   void setGotOffElevatorTime(int time);
+
 private:
    int startFloor;
    int endFloor;
-   int startTime;
+   int startTime; //started waiting time
+
+   int gotOnElevatorTime;
+   int gotOffElevatorTime;
 
    int waitTime;
    int travelTime;
