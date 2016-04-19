@@ -32,7 +32,7 @@ void Building::initiateFloors(int numFloors)
    for (int i = 0; i < numFloors; i++)
    {
       Floor* newFloor = new Floor();
-	  newFloor->setFloor(i + 1); //there is no 0th floor
+	  newFloor->setFloor(i);
       this->floors.push_back(newFloor);
    }
 }
@@ -68,7 +68,7 @@ bool Building::updatePassengerQueue()
 
 Passenger* Building::getNextPassenger()
 {
-	Passenger* nextPassenger;
+	Passenger* nextPassenger = NULL;
 	// if the down person has been waiting longer, take him
 	
 	//if (downPassengerQueue.top()->getStartTime() < upPassengerQueue.top()->getStartTime())
@@ -84,6 +84,7 @@ Passenger* Building::getNextPassenger()
 	//Passenger* nextPassenger = this->allPassengers.top();
    //this->allPassengers.pop();
 	//nextPassenger = personfirstInLine.top().front();
+	this->updatePassengerQueue();
 	std::priority_queue<Passenger, std::vector< Passenger* >, customSort> personNextInLine;
 	for (auto currentFloor : floors)
 	{
@@ -99,7 +100,10 @@ Passenger* Building::getNextPassenger()
 			}
 		}
 	}
-	nextPassenger = personNextInLine.top();
+	if (!personNextInLine.empty())
+	{
+		nextPassenger = personNextInLine.top();
+	}
 	//personfirstInLine.pop();
    return nextPassenger;
 }
@@ -109,7 +113,7 @@ bool Building::anotherElevatorGoingToThatFloor(int floor)
 	bool isAnotherElevatorGoingToThatFloor = false;
 	for (Elevator* elevator : elevators)
 	{
-		if (elevator->getDestinationFloor())
+		if (elevator->getDestinationFloor() == floor)
 		{
 			isAnotherElevatorGoingToThatFloor = true;
 		}

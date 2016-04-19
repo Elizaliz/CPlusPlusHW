@@ -169,15 +169,18 @@ void Elevator::letPassengersOn(Floor* currentFloor)
 
 void Elevator::assignNextPassenger(Passenger* passenger)
 {
-   if (passenger->getStartFloor() > this->currentFloor)
-   {
-      this->setState(MOVING_UP);
-   }
-   else
-   {
-      this->setState(MOVING_DOWN);
-   }
-   this->setDestinationFloor(passenger->getEndFloor());
+	if (passenger != NULL)
+	{
+		if (passenger->getStartFloor() > this->currentFloor)
+		{
+			this->setState(MOVING_UP);
+		}
+		else
+		{
+			this->setState(MOVING_DOWN);
+		}
+		this->setDestinationFloor(passenger->getStartFloor());
+	}
 }
 
 void Elevator::setDestinationFloor(int floor)

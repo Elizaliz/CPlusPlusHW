@@ -49,8 +49,8 @@ int main()
 		   //go through elevators and make decisions
 	   for (Elevator* elevator : mainBuilding->elevators) //elevatorList is a vector
 	   {
-		   if (mainBuilding->updatePassengerQueue())
-		   {
+		   //if (mainBuilding->updatePassengerQueue())
+		   //{
 			   switch (elevator->getState())
 			   {
 
@@ -77,7 +77,6 @@ int main()
 				   {
 					   elevator->incrementTimeMovingFloors();
 				   }
-				   timer->tick();
 				   break;
 
 			   case (Elevator::MOVING_DOWN):
@@ -104,13 +103,11 @@ int main()
 				   {
 					   elevator->incrementTimeMovingFloors();
 				   }
-				   timer->tick();
 				   break;
 
 			   case (Elevator::STOPPING):
 				   // count to length of time it takes to stop
 				   elevator->incrementTimeStoppingFloors();
-				   timer->tick();
 				   break;
 
 			   case (Elevator::STOPPED):
@@ -124,14 +121,12 @@ int main()
 					   //get next person off priority queue and set the end location
 					   elevator->assignNextPassenger(mainBuilding->getNextPassenger());
 				   }
-				   timer->tick();
 				   break;
 
 			   }
-		   }
 	   }
-	   //}
 	   timer->tick();
+	   
    }
 
    //add up and take the average of the total wait time
