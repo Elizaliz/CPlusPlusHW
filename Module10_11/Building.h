@@ -17,9 +17,19 @@ public:
    struct customSort {
       bool operator()(Passenger* a, Passenger* b)
       {
-         return a->getStartTime() < b->getStartTime();
+         return a->getStartTime() > b->getStartTime();
       }
    };
+
+   // organize by first person waiting on each of the floors
+   struct customSort2 { 
+	   bool operator()(std::queue<Passenger*> a, std::queue<Passenger*> b)
+	   {
+		   //return a[0]->getStartTime() < b[0]->getStartTime();
+		   return a.front()->getStartTime() < b.front()->getStartTime();
+	   }
+   };
+
 
    //std::sort(std::begin(myPassengers), std::end(myPassengers), customSort);
    std::priority_queue<Passenger, std::vector< Passenger* >, customSort> allPassengers;
@@ -29,12 +39,17 @@ public:
    //std::vector< std::priority_queue<Passenger, std::vector< Passenger* >, customSort> > downPassengerByFloorQueue;
    //std::vector< std::priority_queue<Passenger, std::vector< Passenger* >, customSort> > upPassengerByFloorQueue;
 
+   std::priority_queue< std::queue<Passenger*>, std::vector<std::queue<Passenger*>>, customSort2> personfirstInLine;
+   //std::priority_queue<Passenger, std::vector< Passenger* >, customSort> personNextInLine;
+
+
    std::vector<Elevator*> elevators;
    std::vector<Floor*> floors;
 
    //checks to see if any passengers on the top of 
-   void updatePassengerQueue();
+   bool updatePassengerQueue();
    Passenger* getNextPassenger();
+   bool anotherElevatorGoingToThatFloor(int floor);
 
 private:
    int avgWaitTime;

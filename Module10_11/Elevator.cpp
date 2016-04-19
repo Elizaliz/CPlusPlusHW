@@ -69,7 +69,7 @@ int Elevator::getTimeMovingToNextFloor()
 
 int Elevator::getTotalTimeToMoveFloors()
 {
-   return this->timeMovingToNextFloor;
+   return this->totalTimeToMoveFloors;
 }
 
 void Elevator::resetTimeStopping() 
@@ -87,7 +87,7 @@ void Elevator::incrementTimeStoppingFloors()
 {
    if (timeStopping < totalTimeToStop)
    {
-      timeStopping++;
+      this->timeStopping++;
    }
    else
    {
@@ -99,7 +99,7 @@ void Elevator::incrementTimeMovingFloors()
 {
    if (timeMovingToNextFloor < totalTimeToMoveFloors)
    {
-      timeMovingToNextFloor++;
+      this->timeMovingToNextFloor++;
    }
 }
 
@@ -153,7 +153,7 @@ void Elevator::letPassengersOn(Floor* currentFloor)
    {
       while (!currentFloor->downPassengerFloorQueue.empty() && this->numPassengers <= MAX_CAPACITY)
       {//I want access to the floor queues
-         elevatorPassengers.push_back(currentFloor->downPassengerFloorQueue.top());
+         elevatorPassengers.push_back(currentFloor->downPassengerFloorQueue.front());
          currentFloor->downPassengerFloorQueue.pop();
       }
    }
@@ -161,7 +161,7 @@ void Elevator::letPassengersOn(Floor* currentFloor)
    {
       if (!currentFloor->upPassengerFloorQueue.empty() && this->numPassengers <= MAX_CAPACITY)
       {
-         elevatorPassengers.push_back(currentFloor->upPassengerFloorQueue.top());
+         elevatorPassengers.push_back(currentFloor->upPassengerFloorQueue.front());
          currentFloor->upPassengerFloorQueue.pop();
       }
    }
@@ -177,10 +177,15 @@ void Elevator::assignNextPassenger(Passenger* passenger)
    {
       this->setState(MOVING_DOWN);
    }
-   this->setDestinationFloor(passenger->getStartFloor());
+   this->setDestinationFloor(passenger->getEndFloor());
 }
 
 void Elevator::setDestinationFloor(int floor)
 {
    this->destinationFloor = floor;
+}
+
+int Elevator::getDestinationFloor()
+{
+	return this->destinationFloor;
 }

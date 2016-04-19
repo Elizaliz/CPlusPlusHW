@@ -45,9 +45,11 @@ public:
    void resetTimeStopping();
    void resetTimeMovingToNextFloor();
 
+   void setcurrentFloor(int);
    int getCurrentFloor();
 
    void setDestinationFloor(int floor);
+   int getDestinationFloor();
 
    void assignNextPassenger(Passenger* passenger);
 

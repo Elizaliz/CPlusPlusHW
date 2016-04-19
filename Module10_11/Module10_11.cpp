@@ -21,7 +21,7 @@ int main()
 
    //file dealio
    // ifstream constructor opens the file in parent folder
-   std::ifstream inPassengerFile("C:\\Users\\lizsk\\Documents\\APL EP\\C++\\Module 11\\Mod10_assignment_Elevators.csv", std::ios::in);
+   std::ifstream inPassengerFile("C:\\Users\\lizsk\\Source\\Repos\\CPlusPlusHW\\Module10_11\\Mod10_assignment_Elevators.csv", std::ios::in);
    if (inPassengerFile)
    {
       int StartTime = 0;
@@ -42,88 +42,96 @@ int main()
    }
 
    while (true)//!mainBuilding->allPassengers.empty() && !mainBuilding->downPassengerByFloorQueue.empty()
-      //&& !mainBuilding->upPassengerByFloorQueue.empty()) //go until people are all satisfied
+	  //&& !mainBuilding->upPassengerByFloorQueue.empty()) //go until people are all satisfied
    {
-      mainBuilding->updatePassengerQueue(); //this will check starttime of passenger and add to priority queue (which organizes by startTime
+	   //if (mainBuilding->updatePassengerQueue()) //this will check starttime of passenger and add to priority queue (which organizes by startTime
+	   //{
+		   //go through elevators and make decisions
+	   for (Elevator* elevator : mainBuilding->elevators) //elevatorList is a vector
+	   {
+		   if (mainBuilding->updatePassengerQueue())
+		   {
+			   switch (elevator->getState())
+			   {
 
-      //go through elevators and make decisions
-      for (Elevator* elevator : mainBuilding->elevators) //elevatorList is a vector
-      {
-         switch (elevator->getState())
-         {
+			   case (Elevator::MOVING_UP):
+				   if (elevator->getTimeMovingToNextFloor() == elevator->getTotalTimeToMoveFloors())
+				   {
+					   //check the floor and see if anyone on the elevator wants to get off at the next floor
+					   elevator->checkIfPassengerOnElevatorWantToGetOff(); //needs floor, passengers on elevator
+					   if (elevator->getNumPassengers() < MAX_CAPACITY)
+					   {
+						   //check the floor and see if anyone on the floor is waiting
+						   if (elevator->checkIfPassengerOnNextFloorWantToGetOn(mainBuilding->floors[elevator->getCurrentFloor() + 1]))
+						   {
+							   elevator->setState(Elevator::STOPPING);//stop at the next floor
+							   elevator->resetTimeStopping(); //resetting the value
+						   }
+					   }
+					   else
+					   {
+						   elevator->updateFloor();
+					   }
+				   }
+				   else
+				   {
+					   elevator->incrementTimeMovingFloors();
+				   }
+				   timer->tick();
+				   break;
 
-         case (Elevator::MOVING_UP) :
-            if (elevator->getTimeMovingToNextFloor() == elevator->getTotalTimeToMoveFloors())
-            {
-               //check the floor and see if anyone on the elevator wants to get off at the next floor
-               elevator->checkIfPassengerOnElevatorWantToGetOff(); //needs floor, passengers on elevator
-               if (elevator->getNumPassengers() < MAX_CAPACITY)
-               {
-                  //check the floor and see if anyone on the floor is waiting
-                  if (elevator->checkIfPassengerOnNextFloorWantToGetOn(mainBuilding->floors[elevator->getCurrentFloor()+1]))
-                  {
-                     elevator->setState(Elevator::STOPPING);//stop at the next floor
-                     elevator->resetTimeStopping(); //resetting the value
-                  }
-               }
-               else
-               {
-                  elevator->updateFloor();
-               }
-            }
-            else
-            {
-               elevator->incrementTimeMovingFloors();
-            }
-                                    break;
-         case (Elevator::MOVING_DOWN) :
-            //check at the very end of the MOVINGUP || MOVINGDOWN
-            if (elevator->getTimeMovingToNextFloor() == elevator->getTotalTimeToMoveFloors())
-            {
-               //check the floor and see if anyone on the elevator wants to get off at the next floor
-               elevator->checkIfPassengerOnElevatorWantToGetOff(); //needs floor, passengers on elevator
-               if (elevator->getNumPassengers() < MAX_CAPACITY)
-               {
-                  //check the floor and see if anyone on the floor is waiting
-                  if (elevator->checkIfPassengerOnNextFloorWantToGetOn(mainBuilding->floors[elevator->getCurrentFloor()-1]))
-                  {
-                     elevator->setState(Elevator::STOPPING);//stop at the next floor
-                     elevator->resetTimeStopping(); //resetting the value
-                  }
-               }
-               else
-               {
-                  elevator->updateFloor();
-               }
-            }
-            else
-            {
-               elevator->incrementTimeMovingFloors();
-            }
-            break;
+			   case (Elevator::MOVING_DOWN):
+				   //check at the very end of the MOVINGUP || MOVINGDOWN
+				   if (elevator->getTimeMovingToNextFloor() == elevator->getTotalTimeToMoveFloors())
+				   {
+					   //check the floor and see if anyone on the elevator wants to get off at the next floor
+					   elevator->checkIfPassengerOnElevatorWantToGetOff(); //needs floor, passengers on elevator
+					   if (elevator->getNumPassengers() < MAX_CAPACITY)
+					   {
+						   //check the floor and see if anyone on the floor is waiting
+						   if (elevator->checkIfPassengerOnNextFloorWantToGetOn(mainBuilding->floors[elevator->getCurrentFloor() - 1]))
+						   {
+							   elevator->setState(Elevator::STOPPING);//stop at the next floor
+							   elevator->resetTimeStopping(); //resetting the value
+						   }
+					   }
+					   else
+					   {
+						   elevator->updateFloor();
+					   }
+				   }
+				   else
+				   {
+					   elevator->incrementTimeMovingFloors();
+				   }
+				   timer->tick();
+				   break;
 
-         case (Elevator::STOPPING) :
-            // count to length of time it takes to stop
-            elevator->incrementTimeStoppingFloors();
-            break;
+			   case (Elevator::STOPPING):
+				   // count to length of time it takes to stop
+				   elevator->incrementTimeStoppingFloors();
+				   timer->tick();
+				   break;
 
-         case (Elevator::STOPPED) :
-            //if people want to get off, let them get off
-            elevator->letPassengersOff();
-            //if people want to get on, let them get on (as long as <=8)
-            elevator->letPassengersOn(mainBuilding->floors[elevator->getCurrentFloor()]);
-            //figure out which floor to go to as the end goal
-            if (elevator->elevatorPassengers.empty())
-            {
-               //get next person off priority queue and set the end location
-               elevator->assignNextPassenger(mainBuilding->getNextPassenger());
-            }
-            break;
+			   case (Elevator::STOPPED):
+				   //if people want to get off, let them get off
+				   elevator->letPassengersOff();
+				   //if people want to get on, let them get on (as long as <=8)
+				   elevator->letPassengersOn(mainBuilding->floors[elevator->getCurrentFloor()]);
+				   //figure out which floor to go to as the end goal
+				   if (elevator->elevatorPassengers.empty())
+				   {
+					   //get next person off priority queue and set the end location
+					   elevator->assignNextPassenger(mainBuilding->getNextPassenger());
+				   }
+				   timer->tick();
+				   break;
 
-         }
-
-      }
-      timer->tick();
+			   }
+		   }
+	   }
+	   //}
+	   timer->tick();
    }
 
    //add up and take the average of the total wait time
